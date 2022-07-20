@@ -13,14 +13,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         //return $request;
-        try {
+        //try {
             $data = $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|string|unique:users,email',
                 'password' => [
                     'required',
                     'confirmed',
-                    //Password::min(8)->mixedCase()->numbers()->symbols()
+                    Password::min(8)->mixedCase()->numbers()->symbols()
                 ]
             ]);
     
@@ -36,9 +36,9 @@ class AuthController extends Controller
                 'user' => $user,
                 'token' => $token
             ]);
-        } catch (Throwable $e) {
-            return $e;
-        }
+        // } catch (Throwable $e) {
+        //     return $e;
+        // }
     }
 
     public function login(Request $request)
